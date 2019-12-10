@@ -13,13 +13,16 @@ public enum RollType {
 
     SIMPLE((frame, rollPair) -> Score.of(frame.sumKnockedDownPins()),
         (input, previousInput) -> Integer.valueOf(input),
-        "^\\d$", 2),
+        "^\\d$",
+        2),
     SPARE((frame, rollPair) -> Score.of(frame.sumKnockedDownPins() + rollPair.getKnockedDownPinsForFirst()),
         (input, previousInput) -> 10 - Integer.valueOf(previousInput),
-        "/", 1),
+        "/",
+        1),
     STRIKE((frame, rollPair) -> Score.of(frame.sumKnockedDownPins() + rollPair.sumKnockedDownPins()),
         (input, previousInput) -> 10,
-        "[xX]", 1);
+        "[xX]",
+        1);
 
     private BiFunction<Frame, RollPair, Score> scoreCalculator;
     private BiFunction<String, String, Integer> rollInputResolver;
