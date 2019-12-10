@@ -16,7 +16,7 @@ public enum RollType {
         "/", 1),
     STRIKE((frame, rollPair) -> Score.of(frame.sumKnockedDownPins() + rollPair.sumKnockedDownPins()),
         (input, previousInput) -> 10,
-        "x", 1);
+        "[xX]", 1);
 
     private BiFunction<Frame, RollPair, Score> scoreCalculator;
     private BiFunction<String, String, Integer> rollInputResolver;
