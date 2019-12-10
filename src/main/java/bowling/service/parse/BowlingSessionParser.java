@@ -14,6 +14,9 @@ import bowling.roll.Roll;
 import bowling.roll.RollPair;
 import bowling.roll.RollType;
 
+/**
+ * Service responsible for parsing a bowling game represented as an array of strings into a format that can be used for score calculation.
+ */
 public class BowlingSessionParser {
 
     private static final int COUNT_OF_FRAMES = 10;
@@ -24,10 +27,16 @@ public class BowlingSessionParser {
         this.parsePreparer = parsePreparer;
     }
 
+    /**
+     * Parse the received bowling session into a {@link FrameSequence}.
+     *
+     * @param bowlingSessionToParse the received raw rolls of bowling game.
+     * @return the {@link FrameSequence}
+     */
     public FrameSequence parse(String[] bowlingSessionToParse) {
         Queue<Roll> rolls = parseIntoRolls(parsePreparer.prepareInputForParsing(bowlingSessionToParse));
         List<Frame> frames = IntStream.range(0, COUNT_OF_FRAMES)
-            .mapToObj(i -> Frame.of(getRollsInFramePart(rolls, rolls.element().getMaxAmountOfRollTypeInFrame()), getProceedingRollPairPart(rolls)))
+            .mapToObj(i -> Frame.of(getRollsInFramePart(rolls, rolls.element().getMaxAmountOfRollTypeInAFrame()), getProceedingRollPairPart(rolls)))
             .collect(Collectors.toList());
         return new FrameSequence(frames);
     }

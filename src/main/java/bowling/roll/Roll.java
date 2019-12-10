@@ -1,5 +1,8 @@
 package bowling.roll;
 
+/**
+ * Model representing a roll.
+ */
 public class Roll {
 
     private int pinsKnockedDown;
@@ -22,8 +25,13 @@ public class Roll {
         return rollType;
     }
 
-    public int getMaxAmountOfRollTypeInFrame() {
-        return rollType.getMaxAmountInAFrame();
+    /**
+     * Get the maximum amount of rolls that are possible in a frame of the owned {@link RollType}.
+     *
+     * @return the maximum amount of rolls that are possible in a frame of the owned {@link RollType}
+     */
+    public int getMaxAmountOfRollTypeInAFrame() {
+        return rollType.getMaxAmountPossibleInAFrame();
     }
 
     @Override

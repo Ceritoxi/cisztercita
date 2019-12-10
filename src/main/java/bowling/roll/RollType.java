@@ -6,6 +6,9 @@ import java.util.function.BiFunction;
 import bowling.frame.Frame;
 import bowling.score.Score;
 
+/**
+ * Enum representing the type of a roll.
+ */
 public enum RollType {
 
     SIMPLE((frame, rollPair) -> Score.of(frame.sumKnockedDownPins()),
@@ -21,16 +24,22 @@ public enum RollType {
     private BiFunction<Frame, RollPair, Score> scoreCalculator;
     private BiFunction<String, String, Integer> rollInputResolver;
     private String inputMatcher;
-    private int maxAmountInAFrame;
+    private int maxAmountPossibleInAFrame;
 
     RollType(BiFunction<Frame, RollPair, Score> scoreCalculator, BiFunction<String, String, Integer> rollInputResolver,
-        String inputMatcher, int maxAmountInAFrame) {
+        String inputMatcher, int maxAmountPossibleInAFrame) {
         this.scoreCalculator = scoreCalculator;
         this.rollInputResolver = rollInputResolver;
         this.inputMatcher = inputMatcher;
-        this.maxAmountInAFrame = maxAmountInAFrame;
+        this.maxAmountPossibleInAFrame = maxAmountPossibleInAFrame;
     }
 
+    /**
+     * Find the matching {@link RollType} for a given raw input.
+     *
+     * @param input the raw input.
+     * @return the matching {@link RollType}
+     */
     public static RollType findMatchingType(String input) {
         return Arrays.stream(RollType.values())
             .filter(rollType -> input.matches(rollType.inputMatcher))
@@ -42,11 +51,17 @@ public enum RollType {
         return rollInputResolver.apply(input, previousInput);
     }
 
-    public Score calculateScore(Frame frame, RollPair rollPair) {
-        return scoreCalculator.apply(frame, rollPair);
+    /**
+     * Calculate the score of a {@link Frame},
+     *
+     * @param frame the {@link Frame}
+     * @return the {@link Score}
+     */
+    public Score calculateScore(Frame frame) {
+        return scoreCalculator.apply(frame, frame.getProceedingRollPair());
     }
 
-    public int getMaxAmountInAFrame() {
-        return maxAmountInAFrame;
+    public int getMaxAmountPossibleInAFrame() {
+        return maxAmountPossibleInAFrame;
     }
 }

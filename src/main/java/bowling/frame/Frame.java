@@ -8,6 +8,9 @@ import bowling.roll.RollPair;
 import bowling.roll.RollType;
 import bowling.score.Score;
 
+/**
+ * Model representing a frame.
+ */
 public class Frame {
     private Deque<Roll> rolls;
     private RollPair proceedingRollPair;
@@ -21,16 +24,35 @@ public class Frame {
         return new Frame(rolls, proceedingRollPair);
     }
 
+    /**
+     * Calculate the {@link Score} of this frame.
+     *
+     * @return the {@link Score} of this frame
+     */
     Score calculateScore() {
-        return getRollTypeOfLastRoll().calculateScore(this, proceedingRollPair);
+        return getRollTypeOfLastRoll().calculateScore(this);
     }
 
+    /**
+     * Get the {@link RollType} of the last {@link Roll} in this frame.
+     *
+     * @return the {@link RollType} of the last {@link Roll} in this frame
+     */
     private RollType getRollTypeOfLastRoll() {
         return rolls.getLast().getRollType();
     }
 
+    /**
+     * Sum the amount of knocked down pins present in this frame.
+     *
+     * @return the sum of the amount of knocked down pins present in this frame
+     */
     public int sumKnockedDownPins() {
         return rolls.stream().mapToInt(Roll::getPinsKnockedDown).sum();
+    }
+
+    public RollPair getProceedingRollPair() {
+        return proceedingRollPair;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package bowling.score;
 
+/**
+ * Model representing a score.
+ */
 public class Score {
     private int score;
 
