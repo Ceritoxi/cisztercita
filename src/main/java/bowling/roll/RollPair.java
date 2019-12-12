@@ -1,5 +1,7 @@
 package bowling.roll;
 
+import java.util.Objects;
+
 /**
  * A pair of {@link Roll}s.
  */
@@ -38,5 +40,19 @@ public class RollPair {
     @Override
     public String toString() {
         return first + ", " + second;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        RollPair rollPair = (RollPair) o;
+        return Objects.equals(first, rollPair.first) &&
+            Objects.equals(second, rollPair.second);
+    }
+
+    @Override public int hashCode() {
+        return Objects.hash(first, second);
     }
 }

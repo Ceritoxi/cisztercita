@@ -14,4 +14,12 @@ public class ScoreTest {
         Score actual = base.add(addition);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void addShouldNotChangeBaseScore() {
+        Score base = Score.of(5);
+        Score addition = Score.of(6);
+        base.add(addition);
+        assertEquals(Score.of(5), base);
+    }
 }
