@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Objects;
 
 import bowling.score.Score;
+import lombok.EqualsAndHashCode;
 
 /**
  * Model representing a sequence of {@link Frame}s.
  */
+@EqualsAndHashCode
 public class FrameSequence {
 
     private List<Frame> frames;
@@ -28,18 +30,5 @@ public class FrameSequence {
     @Override
     public String toString() {
         return String.valueOf(frames);
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        FrameSequence that = (FrameSequence) o;
-        return Objects.equals(frames, that.frames);
-    }
-
-    @Override public int hashCode() {
-        return Objects.hash(frames);
     }
 }

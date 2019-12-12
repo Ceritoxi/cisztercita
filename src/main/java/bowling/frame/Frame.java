@@ -7,10 +7,12 @@ import bowling.roll.Roll;
 import bowling.roll.RollPair;
 import bowling.roll.RollType;
 import bowling.score.Score;
+import lombok.EqualsAndHashCode;
 
 /**
  * Model representing a frame.
  */
+@EqualsAndHashCode
 public class Frame {
     private Deque<Roll> rolls;
     private RollPair proceedingRollPair;
@@ -58,21 +60,5 @@ public class Frame {
     @Override
     public String toString() {
         return rolls + ", " + proceedingRollPair;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Frame frame = (Frame) o;
-        return Objects.equals(rolls, frame.rolls) &&
-            Objects.equals(proceedingRollPair, frame.proceedingRollPair);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(rolls, proceedingRollPair);
     }
 }

@@ -1,10 +1,11 @@
 package bowling.roll;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
 
 /**
  * Model representing a roll.
  */
+@EqualsAndHashCode
 public class Roll {
 
     private int pinsKnockedDown;
@@ -39,19 +40,5 @@ public class Roll {
     @Override
     public String toString() {
         return pinsKnockedDown + ", " + rollType;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Roll roll = (Roll) o;
-        return pinsKnockedDown == roll.pinsKnockedDown &&
-            rollType == roll.rollType;
-    }
-
-    @Override public int hashCode() {
-        return Objects.hash(pinsKnockedDown, rollType);
     }
 }
