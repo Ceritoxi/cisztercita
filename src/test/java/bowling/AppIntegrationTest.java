@@ -46,7 +46,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    public void verifyFull5ThenSpareInput() {
+    public void verifyFullFiveThenSpareInput() {
         String expected = "150" + System.lineSeparator();
         App.main(FULL_FIVE_THEN_SPARE);
         String actual = outputStream.toString();
