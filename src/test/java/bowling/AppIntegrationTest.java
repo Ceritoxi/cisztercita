@@ -18,9 +18,9 @@ public class AppIntegrationTest {
     @Before
     public void setUp() {
         outputStream = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(outputStream);
+        PrintStream printStream = new PrintStream(outputStream);
         oldOutputStream = System.out;
-        System.setOut(ps);
+        System.setOut(printStream);
     }
 
     @After
